@@ -1,39 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
-int max(int a, int b)
-{
-  if (a > b)
-  {
-    return a;
-  }
-  else
-  {
-    return b;
-  }
-}
-
-int knapsack(int W, int wt[], int prof[], int n)
-{
-  int i, w;
-  int knap[n + 1][W + 1];
-  for (i = 0; i <= n; i++)
-  {
-    for (w = 0; w <= W; w++)
-    {
-      if (i == 0 || w == 0)
-        knap[i][w] = 0;
-      else if (wt[i - 1] <= w)
-        knap[i][w]= max(knap[i-1][w],knap[i-1][w-wt[i-1]]+prof[i-1]);
-      else
-        knap[i][w] = knap[i - 1][w];
-    }
-  }
-  return knap[n][W];
-}
 
 int main()
 {
   int n;
+  float p=0.0;
   cout<<"For registration number : 209303126 \n";
   cout<<"Enter number of values \n";
   cin>>n;
@@ -47,6 +18,38 @@ int main()
   cout<<"Enter the capacity of the knapsack \n";
   int weight;
   cin>>weight;
-  cout<<"Maximum Profit is "<< knapsack(weight, wt, prof, n);
+  float r[n];
+  for(int i=0;i<n;i++){
+    r[i]=(float)prof[i]/(float)wt[i];
+  }
+  cout<<endl;
+  for(int i=0;i<n;i++){
+    for(int j=0;j<n-1-i;j++){
+      if(r[j+1]>r[j]){
+        int temp1=r[j+1];
+        r[j+1]=r[j];
+        r[j]=temp1;
+        int temp2=prof[j+1];
+        prof[j+1]=prof[j];
+        prof[j]=temp2;
+        int temp3=wt[j+1];
+        wt[j+1]=wt[j];
+        wt[j]=temp3;
+      }
+    }
+  }
+  int i;
+  for(i=0;i<n;i++){
+    if(weight>0 && wt[i]<=weight){
+      weight-=wt[i];
+      p+=prof[i];
+    }
+    else break;
+  }
+   cout<<"Profit till now and value of i is "<<weight<<" "<<wt[i]<<endl;
+    if(weight>0){
+      p+=prof[i]*((float)weight/(float)wt[i]);
+    }
+  cout<<"Maximum profit is : "<<p<<endl;
   return 0;
 }

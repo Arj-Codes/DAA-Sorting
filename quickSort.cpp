@@ -12,27 +12,30 @@ void printArray(int array[], int size)
 int partition(int array[], int low, int high)
 {
   int pivot = array[low];
-  int i = low+1;
-  int j=high;
-  do{
-  while(array[i] < pivot){
-    i++;
-  }
-  while(array[j] > pivot){
-    j--;
-  }
-  if(i<j){
-    int temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-  }while(i<j);
+  int i = low + 1;
+  int j = high;
+  do
+  {
+    while (array[i] < pivot)
+    {
+      i++;
+    }
+    while (array[j] > pivot)
+    {
+      j--;
+    }
+    if (i < j)
+    {
+      int temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  } while (i < j);
 
-    int temp = array[j];
-    array[j] = array[low];
-    array[low] = temp;
-    return j;
-
+  int temp = array[j];
+  array[j] = array[low];
+  array[low] = temp;
+  return j;
 }
 
 void quickSort(int array[], int low, int high)
@@ -47,13 +50,15 @@ void quickSort(int array[], int low, int high)
 
 int main()
 {
-  cout<<"Registration Number: 209303126"<<endl;
-  cout<<"Enter size of array"<<endl;
-  int n; cin>>n;
-  int data[n]; 
-  for(int i=0;i<n;i++){
-    cout<<"Enter element "<<(i+1)<<endl;
-    cin>>data[i];
+  cout << "Registration Number: 209303126" << endl;
+  cout << "Enter size of array" << endl;
+  int n;
+  cin >> n;
+  int data[n];
+  for (int i = 0; i < n; i++)
+  {
+    cout << "Enter element " << (i + 1) << endl;
+    cin >> data[i];
   }
   cout << "Unsorted Array: \n";
   printArray(data, n);

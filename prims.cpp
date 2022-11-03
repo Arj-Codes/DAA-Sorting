@@ -36,6 +36,7 @@ void primMST(int graph[V][V])
   printMST(parent, graph);
 }
 int main(){
+  cout<<"Registration Number: 209303126"<<endl;
   cout<<V<<endl;
   int graph[V][V] = {{0, 2, 0, 6, 0},
                      {2, 0, 3, 8, 5},
